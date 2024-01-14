@@ -1,0 +1,9 @@
+Flask
+flask-restful
+flask_cors
+cv2
+skimage
+scikit-image
+keras
+tensorflow
+
