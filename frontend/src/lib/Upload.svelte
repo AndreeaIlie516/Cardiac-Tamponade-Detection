@@ -8,7 +8,7 @@
     image_path: string;
   };
 
-  const url = "http://localhost:5000/getPredictionOutput";
+  const url = "http://127.0.0.1:8080/getPredictionOutput";
   let prediction: DataReceived = {};
   let dataToSend: DataSent | undefined;
   let file: File | null = null; 
@@ -58,7 +58,7 @@
   {/if}
   {#if prediction.predicted_label}
     <p>Prediction: {prediction.predicted_label}</p>
-    <p>Confidence: {prediction.confidence?.toFixed(2)}%</p>
+    <p>Confidence: {prediction.confidence?.toFixed(2)}</p>
   {/if}
 </div>
 

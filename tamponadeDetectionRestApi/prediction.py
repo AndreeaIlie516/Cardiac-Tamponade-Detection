@@ -1,6 +1,5 @@
 import cv2
 import numpy as np
-import os
 from skimage import exposure
 from skimage.util import img_as_ubyte
 from keras.models import load_model
@@ -14,9 +13,9 @@ class TamponadeDetection:
         model = load_model(self.model_path)
         return model
 
-    def predict(self, image_path):
+    def predict(self, image):
         model = self.load_trained_model()
-        processed_img = self.process_image(image_path)
+        processed_img = self.process_image(image)
         if model is None:
             return {"message": "Model not loaded"}, 0
         try:
@@ -46,9 +45,8 @@ class TamponadeDetection:
         start_x = (image.shape[1] - crop_size) // 2
         return image[start_y:start_y + crop_size, start_x:start_x + crop_size]
 
-    def process_image(self, image_path):
+    def process_image(self, img):
         try:
-            img = cv2.imread(str(image_path))
             if img is None:
                 raise Exception("Image not found or invalid image format")
             if len(img.shape) > 2 and img.shape[2] == 3:
